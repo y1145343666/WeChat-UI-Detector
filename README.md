@@ -5,86 +5,7 @@
 
 ---
 
-**[English](#english) | [中文](#中文)**
-
----
-
-## <a name="english"></a>English
-
-A YOLOv13l-based object detection model for recognizing UI elements in WeChat chat screenshots. This model identifies 8 categories of interface components including chat bubbles, input fields, contact entries, and navigation elements.
-
-### Model Overview
-
-- **Architecture**: YOLOv13l (Large)
-- **Parameters**: 27,572,271
-- **Computational cost**: 89.0 GFLOPs
-- **Input resolution**: 640x640
-- **Output**: Bounding boxes with class labels and confidence scores for 8 UI element types
-- **Training framework**: Ultralytics
-
-### Performance
-
-Validation was conducted on an augmented test set containing images with random stretching (0.7x-1.4x), rotation (+-10 degrees), HSV color shifts, Gaussian blur, and noise injection to simulate real-world variations.
-
-| Metric | Value | Description |
-|:-------|:-----:|:------------|
-| mAP@0.5 | 91.67% | Mean average precision at IoU threshold 0.5 |
-| mAP@0.5:0.95 | 77.33% | Mean average precision across IoU thresholds 0.5 to 0.95 |
-| Precision | 87.05% | Proportion of correct detections among all detections |
-| Recall | 87.64% | Proportion of detected targets among all ground truth |
-
-### Detection Capabilities
-
-| Class ID | Component | Description | Typical per screenshot |
-|:--------:|:----------|:------------|:---------------------:|
-| 0 | contact_item | Contact entries in chat list | ~8 |
-| 1 | chat_title | Chat conversation header bar | 1 |
-| 2 | left_bubble | Incoming messages from others | ~2 |
-| 3 | right_bubble | Outgoing messages from self | ~1 |
-| 4 | input_box | Text input area at bottom | 1 |
-| 5 | send_btn | Send button | 1 |
-| 6 | tab_chat | Bottom navigation tabs | 4 |
-| 7 | nav_unread | Unread notification badges | ~3 |
-
-### Training Configuration
-
-| Parameter | Value | Description |
-|:----------|:-----:|:------------|
-| optimizer | AdamW | Adaptive moment estimation with weight decay |
-| lr0 | 6e-5 | Initial learning rate |
-| batch | 8 | Batch size |
-| epochs | 300 | Maximum training epochs |
-| patience | 30 | Early stopping patience |
-
-### Training Data
-
-- **Total**: 7,518 images (7,393 for training, 125 for validation)
-- **Total annotations**: 186,696 bounding boxes
-- **Sources**: Real WeChat screenshots + synthetic data
-- **Augmentation**: stretch (0.7-1.4x), rotation (+-10 deg), HSV shift, Gaussian blur, random noise
-
-### Quick Start
-
-```bash
-pip install ultralytics opencv-python
-```
-
-```python
-from ultralytics import YOLO
-
-model = YOLO('models/best.pt')
-results = model.predict('screenshot.jpg', conf=0.5, iou=0.5, imgsz=640)
-
-for box in results[0].boxes:
-    cls_id = int(box.cls[0])
-    conf = float(box.conf[0])
-    x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
-    print(f'Class {cls_id}: {conf:.2f} at [{x1},{y1},{x2},{y2}]')
-```
-
-### License
-
-AGPL-3.0
+**[中文](#中文) | [English](#english)**
 
 ---
 
@@ -162,6 +83,85 @@ for box in results[0].boxes:
 ```
 
 ### 许可证
+
+AGPL-3.0
+
+---
+
+## <a name="english"></a>English
+
+A YOLOv13l-based object detection model for recognizing UI elements in WeChat chat screenshots. This model identifies 8 categories of interface components including chat bubbles, input fields, contact entries, and navigation elements.
+
+### Model Overview
+
+- **Architecture**: YOLOv13l (Large)
+- **Parameters**: 27,572,271
+- **Computational cost**: 89.0 GFLOPs
+- **Input resolution**: 640x640
+- **Output**: Bounding boxes with class labels and confidence scores for 8 UI element types
+- **Training framework**: Ultralytics
+
+### Performance
+
+Validation was conducted on an augmented test set containing images with random stretching (0.7x-1.4x), rotation (+-10 degrees), HSV color shifts, Gaussian blur, and noise injection to simulate real-world variations.
+
+| Metric | Value | Description |
+|:-------|:-----:|:------------|
+| mAP@0.5 | 91.67% | Mean average precision at IoU threshold 0.5 |
+| mAP@0.5:0.95 | 77.33% | Mean average precision across IoU thresholds 0.5 to 0.95 |
+| Precision | 87.05% | Proportion of correct detections among all detections |
+| Recall | 87.64% | Proportion of detected targets among all ground truth |
+
+### Detection Capabilities
+
+| Class ID | Component | Description | Typical per screenshot |
+|:--------:|:----------|:------------|:---------------------:|
+| 0 | contact_item | Contact entries in chat list | ~8 |
+| 1 | chat_title | Chat conversation header bar | 1 |
+| 2 | left_bubble | Incoming messages from others | ~2 |
+| 3 | right_bubble | Outgoing messages from self | ~1 |
+| 4 | input_box | Text input area at bottom | 1 |
+| 5 | send_btn | Send button | 1 |
+| 6 | tab_chat | Bottom navigation tabs | 4 |
+| 7 | nav_unread | Unread notification badges | ~3 |
+
+### Training Configuration
+
+| Parameter | Value | Description |
+|:----------|:-----:|:------------|
+| optimizer | AdamW | Adaptive moment estimation with weight decay |
+| lr0 | 6e-5 | Initial learning rate |
+| batch | 8 | Batch size |
+| epochs | 300 | Maximum training epochs |
+| patience | 30 | Early stopping patience |
+
+### Training Data
+
+- **Total**: 7,518 images (7,393 for training, 125 for validation)
+- **Total annotations**: 186,696 bounding boxes
+- **Sources**: Real WeChat screenshots + synthetic data
+- **Augmentation**: stretch (0.7-1.4x), rotation (+-10 deg), HSV shift, Gaussian blur, random noise
+
+### Quick Start
+
+```bash
+pip install ultralytics opencv-python
+```
+
+```python
+from ultralytics import YOLO
+
+model = YOLO('models/best.pt')
+results = model.predict('screenshot.jpg', conf=0.5, iou=0.5, imgsz=640)
+
+for box in results[0].boxes:
+    cls_id = int(box.cls[0])
+    conf = float(box.conf[0])
+    x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
+    print(f'Class {cls_id}: {conf:.2f} at [{x1},{y1},{x2},{y2}]')
+```
+
+### License
 
 AGPL-3.0
 
