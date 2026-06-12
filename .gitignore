@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.vscode/
+*.egg-info/
+dist/
+build/
+
+# Data (sample images not included)
+data/sample/*.jpg
+data/sample/*.png
+
+# Model weights (too large for git, download separately)
+models/*.pt
+
+# Training outputs
+runs/
+
+# Environment
+venv/
+.env

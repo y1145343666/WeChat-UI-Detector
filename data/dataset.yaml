@@ -1,0 +1,19 @@
+# WeChat UI Dataset - For Distillation
+# 7518张全量数据 (7393训练 + 125验证)
+# 8类目标: contact_item, chat_title, left_bubble, right_bubble
+#          input_box, send_btn, tab_chat, nav_unread
+# 最佳模型: Epoch 45, mAP50-95=0.752
+
+train: C:\Users\11453\Desktop\蒸馏器\train\images
+val: C:\Users\11453\Desktop\蒸馏器\val\images
+nc: 8
+
+names:
+  0: contact_item
+  1: chat_title
+  2: left_bubble
+  3: right_bubble
+  4: input_box
+  5: send_btn
+  6: tab_chat
+  7: nav_unread
