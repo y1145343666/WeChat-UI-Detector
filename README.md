@@ -1,6 +1,6 @@
 # WeChat UI Detector
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
 
 WeChat UI Detector is a YOLOv13l-based model for detecting UI elements in WeChat chat screenshots, supporting 8 object classes.
@@ -65,7 +65,7 @@ results = model.predict('data/sample/', conf=0.5, save=True)
 
 ## License
 
-Apache 2.0
+AGPL-3.0
 
 ## Acknowledgments
 
