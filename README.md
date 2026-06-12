@@ -194,15 +194,6 @@ model.train(
 )
 ```
 
-## Deployment
-
-For edge deployment on RK3588 devices (6 TOPS NPU):
-
-1. Distill the model to a smaller architecture (e.g., YOLO11n)
-2. Export to ONNX format
-3. Convert to RKNN format for RK3588 NPU acceleration
-4. Expected inference speed: 82 FPS with INT8 quantization
-
 ## Repository Structure
 
 ```
