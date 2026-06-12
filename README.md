@@ -3,8 +3,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
 
-> 一个人 + 一张 RTX 4060Ti = 一个敢跟大厂对标的微信UI检测模型
-
 ## 简介
 
 WeChat UI Detector 是一个基于 YOLOv13l 的微信聊天界面UI元素检测模型，能够精准识别微信截图中的 8类核心UI元素。
